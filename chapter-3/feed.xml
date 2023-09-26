@@ -753,8 +753,8 @@ GOMAXPROCS در کنار همزمانی از موازی‌سازی (parallelism)
 &lt;p>منظور از نقل فوق این است شما برای اینکه بخوای بین گوروتین ها ارتباط برقرار کنی این کار را با اشتراک گذاری حافظه نکنید. بلکه باید بواسطه کانال ها حافظه را بین گوروتین ها به اشتراک بزارید.&lt;/p>
 &lt;p>زبان گو برای بحث همزمانی ۲ تا مقوله خیلی مهم دارد که این دو با هم در ارتباط هستند :&lt;/p>
 &lt;ol>
-&lt;li>&lt;strong>گوروتین ها :&lt;/strong> اجزای مستقل و سبک وزن برای دستیابی به همزمان و حالت موازی.&lt;/li>
-&lt;li>&lt;strong>کانال ها :&lt;/strong> فراهم کننده ارتباط و همگام سازی داده بین گوروتین ها&lt;/li>
+&lt;li>&lt;strong>گوروتین ها :&lt;/strong> یک thread مستقل و سبک وزن در زبان گو که قابلیت برنامه نویسی همزمان (concurrency) را فراهم می کند.&lt;/li>
+&lt;li>&lt;strong>کانال ها :&lt;/strong> فراهم کننده ارتباط و همگام سازی داده ها بین گوروتین ها.&lt;/li>
 &lt;/ol>
 &lt;h2 id="361-تعریف-کانال-ها">
 3.6.1 تعریف کانال ها
@@ -806,7 +806,7 @@ GOMAXPROCS در کنار همزمانی از موازی‌سازی (parallelism)
 3.6.2 عملیات ها برروی کانال
 &lt;a class="anchor" href="#362-%d8%b9%d9%85%d9%84%db%8c%d8%a7%d8%aa-%d9%87%d8%a7-%d8%a8%d8%b1%d8%b1%d9%88%db%8c-%da%a9%d8%a7%d9%86%d8%a7%d9%84">#&lt;/a>
 &lt;/h2>
-&lt;p>وقتی شما یک کانال ایجاد می کنید ۲ تا عملیات اصلی برروی کانال می توانید انجام دهید :&lt;/p>
+&lt;p>زمانیکه شما یک کانال ایجاد می کنید، دو عملیات اصلی بر روی کانال می توانید انجام دهید :&lt;/p>
 &lt;ul>
 &lt;li>&lt;strong>ارسال :&lt;/strong> ارسال داده به داخل کانال&lt;/li>
 &lt;li>&lt;strong>دریافت :&lt;/strong> دریافت داده از کانال&lt;/li>
@@ -815,11 +815,11 @@ GOMAXPROCS در کنار همزمانی از موازی‌سازی (parallelism)
 3.6.2.1 عملیات ارسال
 &lt;a class="anchor" href="#3621-%d8%b9%d9%85%d9%84%db%8c%d8%a7%d8%aa-%d8%a7%d8%b1%d8%b3%d8%a7%d9%84">#&lt;/a>
 &lt;/h3>
-&lt;p>برای ارسال داده به داخل کانال یک قالب استاندارد وجود دارد که بهتر است همیشه به خاطر بسپارید :&lt;/p>
+&lt;p>برای ارسال داده به داخل کانال یک اپراتور استاندارد وجود دارد که بهتر است همیشه به خاطر بسپارید :&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-go" data-lang="go">&lt;span style="display:flex;">&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-1">&lt;a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-1">1&lt;/a>&lt;/span>&lt;span>ch &lt;span style="color:#ff79c6">&amp;lt;-&lt;/span> val
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol>
-&lt;li>متغیر ch همان کانالی است که با تایپ مشخصی ازش ایجاد کردیم.&lt;/li>
-&lt;li>متغیر val هم مقداری است که به واسطه &lt;code>&amp;gt;-&lt;/code> داریم به کانال ارسال می کنیم.&lt;/li>
+&lt;li>متغیر ch همان کانالی است که با استفاده از تایپ chan ساخته شده است.&lt;/li>
+&lt;li>متغیر val هم مقداری است که توسط اپراتور &amp;lt;- به کانال ارسال شده است.&lt;/li>
 &lt;/ol>
 &lt;blockquote class="book-hint warning">
 توجه کنید تایپ &lt;strong>val&lt;/strong> باید با تایپی که برای کانال مشخص کردید حتما یکی باشد.
